@@ -42,7 +42,7 @@ body {
 }
 
 a {
-    color: #92badd;
+    color: #20ab38;
     display: inline-block;
     text-decoration: none;
     font-weight: 400;
@@ -113,7 +113,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: #56baed;
+    background-color: #20ab38;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -122,8 +122,8 @@ input[type=button], input[type=submit], input[type=reset] {
     display: inline-block;
     text-transform: uppercase;
     font-size: 13px;
-    -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-    box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+    -webkit-box-shadow: 0 10px 30px 0 rgba(29,214,15,0.4);
+    box-shadow: 0 10px 30px 0 rgba(29,214,15,0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
@@ -135,7 +135,7 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
     input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-        background-color: #39ace7;
+        background-color: #13860c;
     }
 
     input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
@@ -293,13 +293,13 @@ input[type=text], input[type=password] {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #56baed;
+    background-color: #13860c;
     content: "";
     transition: width 0.2s;
 }
 
 .underlineHover:hover {
-    color: #0d0d0d;
+    color: #13860c;
 }
 
     .underlineHover:hover:after {

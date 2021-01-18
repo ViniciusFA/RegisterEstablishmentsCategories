@@ -9,7 +9,15 @@ namespace RegisterEstablishmentsCategories
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery-ui.js",
+                        "~/Scripts/jquery.mask.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/DataTables/jquery.dataTables.js",
+                        "~/Scripts/DataTables/dataTables.bootstrap.js",
+                        "~/Scripts/DataTables/dataTables.fixedColumns.js"
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -24,7 +32,8 @@ namespace RegisterEstablishmentsCategories
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Bootstrap/bootstrap.css",
-                      "~/Content/Login/Login.css",                      
+                      "~/Content/Login/Login.css",
+                      "~/Content/Menu/Menu.css",
                       "~/Content/Site/Site.css"));
         }
     }

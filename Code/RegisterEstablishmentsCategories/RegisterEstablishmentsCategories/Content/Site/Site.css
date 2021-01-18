@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.titlePage h2{
+    color:gray;
+}
+
+.titlePage hr{
+   font-size:10px;
+}

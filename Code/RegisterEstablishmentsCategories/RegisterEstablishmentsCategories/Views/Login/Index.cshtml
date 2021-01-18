@@ -1,4 +1,4 @@
-﻿@
+﻿@model RegisterEstablishmentsCategories.Models.ViewModels.LoginViewModel
 
 @{
     ViewBag.Title = "Login";
@@ -9,7 +9,6 @@
 <script>
     var urlEnterLogin = '@Url.Action("EnterLogin", "Login")';
 </script>
-
 
 @using (Ajax.BeginForm("", "", null, null, new { name = "LoginForm", id = "LoginForm" }))
 {
@@ -23,11 +22,10 @@
 
             <form asp-controller="Login" asp-action="Index" method="post">
 
-                @Html.TextBox("");
-                <input asp-for="Email" type="text" class="fadeIn second" placeholder="Email">
+                @Html.TextBoxFor(x => x.name, new { @Class = "fadeIn second", placeholder = "Nome" })
                 <span asp-validation-for="Email" style="color: #dc3545 !important;"></span>
 
-                <input asp-for="Senha" type="password" class="fadeIn third" placeholder="Senha">
+                @Html.TextBoxFor(x => x.password, new { @Class = "fadeIn second", placeholder = "Senha" })
                 <span asp-validation-for="Senha" style="color: #dc3545 !important;"></span>
                 <br />
                 <input type="submit" class="fadeIn fourth" onclick="EnterLogin()" value="Entrar">

@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Cadastro de Estabelecimentos";
+}
+
+<h2>Clientes</h2>
+<hr />
+
+<form asp-controller="Cliente" asp-action="Cadastro" method="post">
+    <input type="hidden" asp-for="Codigo" value="Codigo @*@Model.Codigo*@" />
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>Nome</label>
+            <input type="text" asp-for="Nome" value="Nome@*@Model.Nome*@" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>CNPJ_CPF</label>
+            <input type="text" asp-for="CNPJ_CPF" value="CNPJ_CPF@*@Model.CNPJ_CPF*@" class="form-control" />
+            <span asp-validation-for="CNPJ_CPF" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>Email</label>
+            <input type="text" asp-for="Email" value="Email@*@Model.Email*@" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-4">
+            <label>Celular</label>
+            <input type="text" asp-for="Celular" value="Celular@*@Model.Celular*@" class="form-control" />
+            <span asp-validation-for="Celular" class="text-danger"></span>
+        </div>
+
+        <br />
+        <div class="col">
+            <button type="button" class="btn btn-info" onclick="Novo()"> Novo </button>
+            <button type="submit" class="btn btn-success"> Gravar </button>
+            <button type="button" class="btn btn-warning" onclick="Listagem()">Listagem</button>
+            @*@if (Model.Codigo != null)
+            {
+                <button type="button" class="btn btn-danger" onclick="Excluir(@*@Model.Codigo*@)">Excluir</button>
+            }*@
+        </div>
+    </div>
+
+</form>

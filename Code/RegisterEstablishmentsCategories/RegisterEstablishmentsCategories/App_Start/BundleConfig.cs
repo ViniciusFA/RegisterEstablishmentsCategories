@@ -23,8 +23,9 @@ namespace RegisterEstablishmentsCategories
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Bootstrap/bootstrap.css",
+                      "~/Content/Login/Login.css",                      
+                      "~/Content/Site/Site.css"));
         }
     }
 }

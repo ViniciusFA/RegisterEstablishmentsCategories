@@ -1,25 +1,45 @@
-﻿
+﻿@
+
 @{
     ViewBag.Title = "Login";
+
+    @Scripts.Render("~/Scripts/Views/Login.js");
 }
 
+<script>
+    var urlEnterLogin = '@Url.Action("EnterLogin", "Login")';
+</script>
 
 
-<div class="" style="border:solid 1px ">
-    <form>
-        <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Usuário</label>
-            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="userHelp">
+@using (Ajax.BeginForm("", "", null, null, new { name = "LoginForm", id = "LoginForm" }))
+{
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+
+            <div class="fadeIn first">
+                <div style="float:left;width:100%;height:20px;"></div>
+                <img src="~/img/logo.png" id="icon" alt="Logo Icon" />
+            </div>
+
+            <form asp-controller="Login" asp-action="Index" method="post">
+
+                @Html.TextBox("");
+                <input asp-for="Email" type="text" class="fadeIn second" placeholder="Email">
+                <span asp-validation-for="Email" style="color: #dc3545 !important;"></span>
+
+                <input asp-for="Senha" type="password" class="fadeIn third" placeholder="Senha">
+                <span asp-validation-for="Senha" style="color: #dc3545 !important;"></span>
+                <br />
+                <input type="submit" class="fadeIn fourth" onclick="EnterLogin()" value="Entrar">
+                <br />
+                <span style="color: #dc3545 !important;"> @ViewData["ErrorLogin"]</span>
+            </form>
+
+            <div id="formFooter">
+                <a class="underlineHover" href="#">Esqueceu a senha?</a>
+            </div>
         </div>
-        <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <div class="mb-3 form-check">
-           <label>Esqueceu a senha?</label><br />
-           <label><a>Clique aqui.</a></label>
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-    </form>
-   
-</div>
+    </div>
+
+}
+

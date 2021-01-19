@@ -1,54 +1,134 @@
-﻿@{
-    ViewData["Title"] = "Cadastro de Estabelecimentos";
+﻿@model Models.ViewModel.EstablishmentViewModel
+
+@{
+    ViewData["Title"] = "Cadastro Estebelecimentos";
 }
 
-<h2>Clientes</h2>
+
+<h2>@ViewData["Title"]</h2>
 <hr />
 
-<form asp-controller="Cliente" asp-action="Cadastro" method="post">
-    <input type="hidden" asp-for="Codigo" value="Codigo @*@Model.Codigo*@" />
+@using (Ajax.BeginForm("", "", null, null, new { @class = "form-signin", id = "FormRegisterInput", name = "FormRegisterInput" }))
+{
+    <div class="modal fade" id="modal-RegisterInput" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @*data-keyboard="false" data-backdrop="static"*@>
+        <div class="modal-dialog-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">
+                        <i class="fa fa-calendar"></i>
+                        <span class="hidden-inline-mobile" style="margin-left:10px;"><b>@ViewBag.Title</b></span>
+                    </h4>
+                </div>
 
-    <div class="form-group">
-        <div class="col-4">
-            <label>Nome</label>
-            <input type="text" asp-for="Nome" value="Nome@*@Model.Nome*@" class="form-control" />
-            <span asp-validation-for="Nome" class="text-danger"></span>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Razão Social</b></span>
+                                    <br />
+                                    @Html.HiddenFor(x => x.IdSequence)
+                                    @Html.TextBoxFor(x => x.CompanyName, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Nome Fantasia</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.FantasyName, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>CNPJ_CPF</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.CNPJ, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Email</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Endereço</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Cidade</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Estado</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.State, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Telefone</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control defaultTelefoneMask", @maxlength = 100, @placeHolder = "(xxx) xxxxx-xxxx" })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Data de Cadastro</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.RegisterDate, new { @class = "form-control fieldRegisterDate", @maxlength = 80, @type = "date" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Categoria</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.Category, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Status</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.Status, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Agência e Conta</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.AgencyAccount, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-reply"></i>
+                        @Html.Raw(" Fechar")
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="ClearFields()">
+                        <i class="fa fa-reply"></i>
+                        @Html.Raw(" Limpar")
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="Save();" value="Salvar">
+                        <i class="fa fa-reply"></i>
+                        @Html.Raw(" Salvar")
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-4">
-            <label>CNPJ_CPF</label>
-            <input type="text" asp-for="CNPJ_CPF" value="CNPJ_CPF@*@Model.CNPJ_CPF*@" class="form-control" />
-            <span asp-validation-for="CNPJ_CPF" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-4">
-            <label>Email</label>
-            <input type="text" asp-for="Email" value="Email@*@Model.Email*@" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-4">
-            <label>Celular</label>
-            <input type="text" asp-for="Celular" value="Celular@*@Model.Celular*@" class="form-control" />
-            <span asp-validation-for="Celular" class="text-danger"></span>
-        </div>
-
-        <br />
-        <div class="col">
-            <button type="button" class="btn btn-info" onclick="Novo()"> Novo </button>
-            <button type="submit" class="btn btn-success"> Gravar </button>
-            <button type="button" class="btn btn-warning" onclick="Listagem()">Listagem</button>
-            @*@if (Model.Codigo != null)
-            {
-                <button type="button" class="btn btn-danger" onclick="Excluir(@*@Model.Codigo*@)">Excluir</button>
-            }*@
-        </div>
-    </div>
-
-</form>
+}

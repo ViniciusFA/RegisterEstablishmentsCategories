@@ -1,4 +1,4 @@
-﻿@model RegisterEstablishmentsCategories.Models.ViewModels.LoginViewModel
+﻿@model Models.ViewModel.LoginViewModel
 
 @{
     ViewBag.Title = "Login";
@@ -8,6 +8,7 @@
 
 <script>
     var urlEnterLogin = '@Url.Action("EnterLogin", "Login")';
+    var urlIndexMenu = '@Url.Action("Index", "Menu")';
 </script>
 
 @using (Ajax.BeginForm("", "", null, null, new { name = "LoginForm", id = "LoginForm" }))
@@ -20,18 +21,16 @@
                 <img src="~/img/logo.png" id="icon" alt="Logo Icon" />
             </div>
 
-            <form asp-controller="Login" asp-action="Index" method="post">
 
                 @Html.TextBoxFor(x => x.name, new { @Class = "fadeIn second", placeholder = "Nome" })
                 <span asp-validation-for="Email" style="color: #dc3545 !important;"></span>
 
-                @Html.TextBoxFor(x => x.password, new { @Class = "fadeIn second", placeholder = "Senha" })
+                @Html.PasswordFor(x => x.password, new { @Class = "fadeIn second", placeholder = "Senha" })
                 <span asp-validation-for="Senha" style="color: #dc3545 !important;"></span>
                 <br />
                 <input type="submit" class="fadeIn fourth" onclick="EnterLogin()" value="Entrar">
                 <br />
                 <span style="color: #dc3545 !important;"> @ViewData["ErrorLogin"]</span>
-            </form>
 
             <div id="formFooter">
                 <a class="underlineHover" href="#">Esqueceu a senha?</a>

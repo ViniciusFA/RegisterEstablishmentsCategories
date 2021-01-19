@@ -1,9 +1,11 @@
 ﻿using Business;
+using Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UserInterface.Util;
 
 namespace RegisterEstablishmentsCategories.Controllers
 {
@@ -20,14 +22,14 @@ namespace RegisterEstablishmentsCategories.Controllers
         {
             return View();
         }
-
-        public PartialViewResult EnterLogin(string user, string password)
+        
+        public string EnterLogin(LoginViewModel viewModel)
         {
-            var result = _loginBusiness.IsAuthenticDataBase(user, password);
-            if (result)
-                return PartialView("_");
+            var user = _loginBusiness.IsAuthenticDataBase(AuxiliaryMethods.ContextPerRequestInstance, viewModel);
+            if (user != null)
+                return "true";
             else
-                return default(PartialViewResult);
+                return "false";
         }
     }
 }

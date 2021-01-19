@@ -1,4 +1,4 @@
 ﻿
 function OpenEstablishments() {
-    $.ajax({ url: urlOpenEstablishment })
+    window.location.href = urlOpenEstablishment;
 }

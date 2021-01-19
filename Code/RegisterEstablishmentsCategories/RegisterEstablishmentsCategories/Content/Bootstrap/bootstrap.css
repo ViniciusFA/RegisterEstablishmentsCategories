@@ -6754,4 +6754,10 @@ button.close {
     display: none !important;
   }
 }
+
+.buttonsEditDelete {
+    position: relative;
+    display: inline-flex;
+    vertical-align: middle;
+}
 /*# sourceMappingURL=bootstrap.css.map */

@@ -4,8 +4,11 @@
     @Scripts.Render("~/Scripts/Views/Menu.js")
 }
 
+<script src="https://code.jquery.com/jquery-2.2.4.js"
+        integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+        crossorigin="anonymous"></script>
 <script>
-    var urlOpenEstablishment = '@Url.Action("index", "Establishments")';
+    var urlOpenEstablishment = '@Url.Action("Index", "Establishments")';   
 </script>
 
 <div class="row" style="text-align:center;margin-top: 25px;">
@@ -17,38 +20,8 @@
     </div>
     <div class="col-md-4">
         <div class="divCategories">
-            <img src="~/Content/img/categorias.png" width="150" height="150" />
+            <img src="~/Content/img/categorias.png" width="150" height="150" onclick="OpenCategories()"/>
         </div>
         <span>Cadastro de Categorias    </span>
     </div>
-    @*<div class="col-md-4">
-        <div>
-            <a href="../Produto/Index"><img src="~/Content/img/" width="150" height="150" /></a>
-        </div>
-        <span>Cadastro de Produtos    </span>
-    </div>*@
 </div>
-
-<br /><br />
-
-@*<div class="row" style="text-align:center;">
-    <div class="col-md-4">
-        <div>
-            <a href="../Venda/Index "> <img src="~/Content/img/" width="150" height="150" /></a>
-        </div>
-        <span>Registro de Vendas</span>
-    </div>
-    <div class="col-md-4">
-        <div>
-            <a href="../Relatorio/Grafico"><img src="~/Content/img/" width="150" height="150" /></a>
-        </div>
-        <span>Relatórios  </span>
-    </div>
-    <div class="col-md-4">
-        <div>
-            <a href="../Configuracao/Index "><img src="~/Content/img/g" width="150" height="150" /></a>
-        </div>
-        <span>Configurações</span>
-    </div>
-</div>*@
-@*© 2021 GitHub, Inc.*@

@@ -23,10 +23,29 @@ textarea {
     max-width: 280px;
 }
 
-.titlePage h2{
-    color:gray;
+.titlePage h2 {
+    color: gray;
 }
 
-.titlePage hr{
-   font-size:10px;
+.titlePage hr {
+    font-size: 10px;
 }
+
+.btn_goBackPage {
+    cursor: pointer;
+    margin-right: 40px;
+    margin-top: 43px;
+}
+
+.fieldRegisterDate {
+    width: 89%;
+    height: 34px;
+    background-color: #eee;
+}
+.fieldRegisterDate:focus {
+    width: 89%;
+    height: 34px;
+    background-color: #fff;
+}
+
+

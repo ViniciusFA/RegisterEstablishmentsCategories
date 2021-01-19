@@ -4,7 +4,7 @@ namespace Models
 {
     public class Establishment // tb_establishment
     {
-        public int IdEstablishment { get; set; } // id_sequence_establishment
+        public int? IdEstablishment { get; set; } // id_sequence_establishment
         public string CompanyName { get; set; }  //ds_companyName
         public string FantasyName { get; set; }  //ds_fantasyName
         public string CNPJ { get; set; } //ds_cnpj

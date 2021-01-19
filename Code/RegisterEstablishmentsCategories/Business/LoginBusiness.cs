@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Business.Base;
+using DataAccess;
+using Models;
+using Models.ViewModel;
 
 namespace Business
 {
-    public class LoginBusiness
+    public class LoginBusiness : DefaultBusiness
     {
-        public bool IsAuthenticDataBase(string user, string password)
+        public Login IsAuthenticDataBase(Context context, LoginViewModel viewModel)
         {
-
-            return false;
+            return this.GetSingleOrDefault<Login>(context, x => x.name == viewModel.name && x.password == viewModel.password);
         }
     }
 }

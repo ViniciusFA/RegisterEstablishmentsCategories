@@ -1,4 +1,6 @@
-﻿function GetColsRegister() {
+﻿var dataTableRegister = undefined;
+
+function GetColsRegister() {
     var colDefs = new Array();
 
     // column Razao social
@@ -150,15 +152,20 @@
         "mData": "Action", "sTitle": "Ações", "sClass": "text-center", "bSearchable": false, "bSortable": false,
         "mRender": function (data, type, row) {
             var html = "";
-            html += "<a style='cursor:pointer;' onclick='ShowDescriptionsRegisterInput(1)' title='Editar'><img src='Content/img/to_do_list_cheked_1.png'/></a>&nbsp;";
-            html += "&nbsp;<a style='cursor:pointer;' onclick='InativeDescriptionRegister()' title='Inativar'><img src='Content/img/delete.gif'/></a>";
+            var commandEdit = "Register(" + row.IdSequence + ")";
+            var commandDelete = "Delete('" + row.CompanyName + "','" + row.IdSequence + "')";
+
+            html = '<div class="buttonsEditDelete" role="group" aria-label="Small button group">';
+            html += '<button type="button" class="btn btn-success" title="Editar Registro" onclick="' + commandEdit + '"><i class="glyphicon glyphicon-pencil"></i></button>'
+            html += '&nbsp; <button type="button" class="btn btn-danger" title="Excluir" onclick="' + commandDelete + '"><i class="glyphicon glyphicon-trash"></i></button>';
+            html += '</div>';
+
             return html;
         }
     });
 
     return colDefs;
 }
-
 
 function InitializaDatatableRegister(tableId) {
 
@@ -198,6 +205,110 @@ function InitializaDatatableRegister(tableId) {
 
 }
 
-function Register() {
-    $.ajax({ url: urlOpenRegister })
+function Register(code) {
+
+    $.ajax({
+        url: urlOpenRegister,
+        data: { IdSequence: code },
+        type: 'POST',
+        success: function (result) {
+            
+            if (result.Success == undefined) {
+                $('#ModalRegisterInput').html(result);
+                $('#modal-RegisterInput').modal('show');
+            } else {
+                ShowMessageError(result.Title, result.MsgReturn);
+            }
+        }
+    });
 }
+
+function Save() {
+    var form = $("#FormRegisterInput").serialize();
+
+    $.ajax({
+        url: urlSaveRegister,
+        data: form,
+        type: 'POST',
+        success: function (result) {            
+            if (result.Success == true) {
+                $('#modal-RegisterInput').modal('hide');
+                RefreshDatatable();
+                ShowMessageSuccess(result.Title, result.MsgReturn)
+            } else {
+                ShowMessageError(result.Title, result.MsgReturn);
+            }
+        }
+    });
+}
+
+function Delete(EstablishmentName, EstablishmentCode) {
+
+    bootbox.confirm({
+        size: 'medium',
+        title: 'Confirma Exclusão',
+        message: 'Deseja realmente <b>excluir</b> o estabelecimento <b>' + EstablishmentName + '</b>?',
+        buttons: {
+            confirm: {
+                label: 'Sim',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'Não',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+
+            if (result) {
+
+                $.ajax({
+                    url: urlDeleteRegister,
+                    data: { IdEstablishment: EstablishmentCode },
+                    type: 'POST',
+                    success: function (response) {
+
+                        if (response.Success == true) {
+                            RefreshDatatable();
+                            ShowMessageSuccess(response.Title, response.MsgReturn)
+                        } else {
+                            ShowMessageError(response.Title, response.MsgReturn);
+                        }
+
+                    }
+                });
+            }
+
+        }
+    });
+}
+
+function RefreshDatatable() {
+    dataTableRegister.fnDraw();
+}
+
+function ClearFields() {
+    $("#CompanyName").val('');
+    $("#FantasyName").val('');
+    $("#CNPJ").val('');
+    $("#Email").val('');
+    $("#Address").val('');
+    $("#City").val('');
+    $("#State").val('');
+    $("#PhoneNumber").val('');
+    $("#RegisterDate").val('');
+    $("#Category").val('');
+    $("#Status").val('');
+    $("#AgencyAccount").val('');    
+}
+
+function GoBackMenu() {
+    window.location.href = urlIndexMenu;
+}
+
+function MasksInitialize() {
+
+    //$('.defaultTelefoneMask').mask('000.00000.0000');
+
+}
+

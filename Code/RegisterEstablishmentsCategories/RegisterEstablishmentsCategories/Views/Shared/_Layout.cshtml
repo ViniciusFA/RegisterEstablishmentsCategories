@@ -8,7 +8,25 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    
+    @* MODAL ALERTA *@
+    <div class="modal fade" id="modalAlert" tabindex="-1" role="dialog" data-toggle="modal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="title" class="modal-title"></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="alertType" class="alert alert-dismissible">
+                        <span id="message"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="btnAlertaOk">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container body-content">
         @RenderBody()
         <hr />

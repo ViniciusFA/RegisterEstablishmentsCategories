@@ -59,50 +59,6 @@
 
                         <div class="row">
                             <div class="col-sm-12 col-lg-12">
-                                <div class="col-sm-3 col-lg-4">
-                                    <span><b>Email</b></span>
-                                    <br />
-                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @maxlength = 100 })
-                                </div>
-
-                                <div class="col-sm-3 col-lg-4">
-                                    <span><b>Endereço</b></span>
-                                    <br />
-                                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @maxlength = 100 })
-                                </div>
-
-                                <div class="col-sm-3 col-lg-3">
-                                    <span><b>Cidade</b></span>
-                                    <br />
-                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", @maxlength = 100 })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12 col-lg-12">
-                                <div class="col-sm-3 col-lg-4">
-                                    <span><b>Estado</b></span>
-                                    <br />
-                                    @Html.TextBoxFor(x => x.State, new { @class = "form-control", @maxlength = 100 })
-                                </div>
-
-                                <div class="col-sm-3 col-lg-4">
-                                    <span><b>Telefone</b></span>
-                                    <br />
-                                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control defaultTelefoneMask", @maxlength = 100, @placeHolder = "xxx-xxxxx-xxxx" })
-                                </div>
-
-                                <div class="col-sm-3 col-lg-3">
-                                    <span><b>Data de Cadastro</b></span>
-                                    <br />
-                                    @Html.TextBoxFor(x => x.RegisterDate, new { @class = "form-control fieldRegisterDate", @maxlength = 100, @placeholder = "dd/mm/yyyy" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-12 col-lg-12">
 
                                 <div class="col-sm-3 col-lg-4">
                                     <span><b>Agência</b></span>
@@ -117,9 +73,54 @@
                                 </div>
 
                                 <div class="col-sm-3 col-lg-3">
+                                    <span><b>Endereço</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.Address, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Estado</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.State, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Cidade</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Telefone</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control", @maxlength = 100, @placeHolder = "xxx-xxxxx-xxxx" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+
+                                <div class="col-sm-3 col-lg-4">
                                     <span><b>Categoria</b></span>
                                     <br />
-                                    @Html.TextBoxFor(x => x.Category, new { @class = "form-control", @maxlength = 100 })
+                                    @Html.DropDownListFor(m => Model.Category, ViewBag.CategoryList as SelectList, new { @class = "form-control", @id="CategoryDDL"})
+                                </div>
+
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Email</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+
+                                <div class="col-sm-3 col-lg-3">
+                                    <span><b>Data de Cadastro</b></span>
+                                    <br />
+                                    @Html.TextBoxFor(x => x.RegisterDate, new { @class = "form-control fieldRegisterDate", @maxlength = 100, @placeholder = "dd/mm/yyyy" })
                                 </div>
                             </div>
                         </div>
@@ -129,7 +130,7 @@
                                 <div class="col-sm-3 col-lg-4">
                                     <span><b>Status</b></span>
                                     <br />
-                                    @Html.TextBoxFor(x => x.Status, new { @class = "form-control", @maxlength = 100 })
+                                    @Html.DropDownListFor(m => Model.Status, ViewBag.StatusList as SelectList, new { @class = "form-control", @id= "StatusDDL" })
                                 </div>
                             </div>
                         </div>

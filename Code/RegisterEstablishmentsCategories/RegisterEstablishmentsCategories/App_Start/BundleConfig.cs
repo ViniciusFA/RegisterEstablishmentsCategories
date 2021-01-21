@@ -47,7 +47,7 @@ namespace RegisterEstablishmentsCategories
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Bootstrap/bootstrap.css",
-                       "~/Content/Bootstrap/bootstrap.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/Login/Login.css",
                       "~/Content/Menu/Menu.css",
                       "~/Content/Site/Site.css"));

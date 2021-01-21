@@ -16,10 +16,12 @@ namespace DataAccess
                 Database.SetInitializer<Context>(null);
         }
 
-        #region DbSets
-
+        #region DbSets      
+        public DbSet<Login> Login { get; set; }
         public DbSet<Establishment> Establishment { get; set; }
-        public DbSet<Login> Login { get; set; }       
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Status> Status { get; set; }
+        #endregion 
 
         public override int SaveChanges()
         {
@@ -48,13 +50,14 @@ namespace DataAccess
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);            
-
-            #endregion
+            
 
             #region Configurations
 
             modelBuilder.Configurations.Add(new Configurations.Login());
             modelBuilder.Configurations.Add(new Configurations.Establishment());
+            modelBuilder.Configurations.Add(new Configurations.Category());
+            modelBuilder.Configurations.Add(new Configurations.Status());
 
             #endregion
         }

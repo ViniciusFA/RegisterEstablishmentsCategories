@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 
 namespace DataAccess.Configurations
 {
@@ -23,10 +18,17 @@ namespace DataAccess.Configurations
             Property(x => x.State).HasColumnName("ds_state").HasMaxLength(30).IsOptional();
             Property(x => x.PhoneNumber).HasColumnName("ds_phoneNumber").HasMaxLength(14).IsRequired();
             Property(x => x.RegisterDate).HasColumnName("dt_registerDate").IsRequired();
-            Property(x => x.Category).HasColumnName("ds_category").HasMaxLength(50).IsOptional();
-            Property(x => x.Status).HasColumnName("ds_status").HasMaxLength(15).IsOptional();
+            Property(x => x.CategoryID).HasColumnName("num_category").IsRequired();
+            Property(x => x.StatusID).HasColumnName("num_status").IsRequired();
             Property(x => x.Agency).HasColumnName("ds_agency").HasMaxLength(5).IsRequired();
             Property(x => x.Account).HasColumnName("ds_account").HasMaxLength(8).IsRequired();
+            Property(x => x.CreateDate).HasColumnName("dt_createDate").IsRequired();
+
+            HasRequired(x => x.Category)
+               .WithMany().HasForeignKey(f => f.CategoryID);
+
+            HasRequired(x => x.Status)
+              .WithMany().HasForeignKey(f => f.StatusID);
         }
     }
 }

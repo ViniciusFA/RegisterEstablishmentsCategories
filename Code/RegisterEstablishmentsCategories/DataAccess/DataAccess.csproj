@@ -43,8 +43,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\Category.cs" />
     <Compile Include="Configurations\Establishment.cs" />
     <Compile Include="Configurations\Login.cs" />
+    <Compile Include="Configurations\Status.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="DefaultDataAccess.cs" />
   </ItemGroup>

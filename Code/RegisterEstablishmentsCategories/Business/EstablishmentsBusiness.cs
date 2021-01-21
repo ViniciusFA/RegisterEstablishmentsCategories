@@ -6,6 +6,9 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Entity;
+
+
 
 namespace Business
 {
@@ -14,7 +17,14 @@ namespace Business
         public IPagedList<EstablishmentViewModel> GetAll(Context context, EstablishmentViewModel viewModel, int pageNumber, int pageSize)
         {
             var result = new List<EstablishmentViewModel>();
-            var listData = this.GetList<Establishment>(context);
+
+            int? categoryId = !string.IsNullOrEmpty(viewModel.Category) ? int.Parse(viewModel.Category) : 0;
+            int? statusId = !string.IsNullOrEmpty(viewModel.Status) ? int.Parse(viewModel.Status) : 0;
+
+            var listData = this.GetList<Establishment>(context)
+                               .Include(x => x.Category).Include(x => x.Status);
+            //var category = this.GetSingleOrDefault<Category>(context, x => x.CategoryCode == categoryId);
+            //var status = this.GetSingleOrDefault<Status>(context, x => x.IdSequence == statusId);
 
             listData.OrderBy(o => o.CompanyName)
                     .ToList().ForEach(e =>
@@ -25,16 +35,16 @@ namespace Business
                             Address = e.Address,
                             Agency = e.Agency,
                             Account = e.Agency,
-                            Category = e.Category,
+                            Category = e.Category.CategoryName, //category != null? category.CategoryName : "",
                             City = e.City,
                             CNPJ = e.CNPJ,
                             CompanyName = e.CompanyName,
                             Email = e.Email,
                             FantasyName = e.FantasyName,
-                            PhoneNumber = e.PhoneNumber.ToString(),
-                            RegisterDate = e.RegisterDate,
+                            PhoneNumber = e.PhoneNumber,
+                            RegisterDate = e.RegisterDate.ToString("dd/MM/yyyy"),
                             State = e.State,
-                            Status = e.Status
+                            Status = e.Status.Name //status != null? status.Name : ""
                         });
                     });
 
@@ -47,7 +57,7 @@ namespace Business
             var model = this.GetSingleOrDefault<Establishment>(context, x => x.IdEstablishment == IdSequence);
             if (model != null)
             {
-                viewModel = ConvertModelToViewModel(model, viewModel);
+                viewModel = ConvertModelToViewModel(context, model, viewModel);
             }
 
             return viewModel;
@@ -58,22 +68,27 @@ namespace Business
             var newData = false;
             int? idSequence = null;
 
+            Establishment model = new Establishment();
+
             if (viewModel.IdSequence != null)
-                idSequence = int.Parse(viewModel.IdSequence);
+                idSequence = int.Parse(viewModel.IdSequence);            
 
             var establishment = this.GetFirstOrDefault<Establishment>(context, x => x.IdEstablishment == idSequence);
             if (establishment == null)
             {
                 newData = true;
-                establishment = ConvertViewModelToModel(viewModel, establishment, true);
+                model = ConvertViewModelToModel(context, viewModel, establishment, true);
             }
             else
-                establishment = ConvertViewModelToModel(viewModel, establishment, false);
+                model = ConvertViewModelToModel(context, viewModel, establishment, false);
 
             if (newData)
-                Insert<Establishment>(context, establishment, true);
+                Insert<Establishment>(context, model, true);
             else
+            {
+                context.Entry(establishment).CurrentValues.SetValues(model);
                 Update<Establishment>(context, establishment, true);
+            }               
 
             return true;
         }
@@ -90,36 +105,39 @@ namespace Business
             return false;
         }
 
-        private Establishment ConvertViewModelToModel(EstablishmentViewModel viewModel, Establishment model, bool isInsert)
+        private Establishment ConvertViewModelToModel(Context context, EstablishmentViewModel viewModel, Establishment model, bool isInsert)
         {
             int? idSequence = null;
             if(!isInsert)
                 idSequence = model.IdEstablishment != null? model.IdEstablishment : null;
-            
+
             model = new Establishment
             {
                 IdEstablishment = idSequence,
                 Address = viewModel.Address,
                 Agency = viewModel.Agency,
                 Account = viewModel.Account,
-                Category = viewModel.Category,
+                CategoryID = int.Parse(viewModel.Category),
                 City = viewModel.City,
                 CNPJ = viewModel.CNPJ,
                 CompanyName = viewModel.CompanyName,
                 Email = viewModel.Email,
                 FantasyName = viewModel.FantasyName,
                 PhoneNumber = viewModel.PhoneNumber,
-                RegisterDate = viewModel.RegisterDate,
+                RegisterDate = DateTime.Parse(viewModel.RegisterDate),
                 State = viewModel.State,
-                Status = viewModel.Status
+                StatusID = int.Parse(viewModel.Status),
+                CreateDate = DateTime.Now
             };
 
             return model;
         }
 
-        private EstablishmentViewModel ConvertModelToViewModel(Establishment model, EstablishmentViewModel viewModel)
+        private EstablishmentViewModel ConvertModelToViewModel(Context context,Establishment model, EstablishmentViewModel viewModel)
         {
             var idSequence = model.IdEstablishment != null ? model.IdEstablishment : null;
+            var category = this.GetSingleOrDefault<Category>(context, x => x.CategoryCode == model.CategoryID);
+            var status = this.GetSingleOrDefault<Status>(context, x => x.IdSequence == model.StatusID);
 
             viewModel = new EstablishmentViewModel
             {
@@ -127,16 +145,16 @@ namespace Business
                 Address = model.Address,
                 Agency = model.Agency,
                 Account = model.Account,
-                Category = model.Category,
+                Category = category != null? category.CategoryCode.ToString() : "",
                 City = model.City,
                 CNPJ = model.CNPJ,
                 CompanyName = model.CompanyName,
                 Email = model.Email,
                 FantasyName = model.FantasyName,
                 PhoneNumber = model.PhoneNumber.ToString(),
-                RegisterDate = model.RegisterDate,
+                RegisterDate = model.RegisterDate.ToString("dd/MM/yyyy"),
                 State = model.State,
-                Status = model.Status
+                Status = status != null? status.IdSequence.ToString() : "",
             };
 
             return viewModel;

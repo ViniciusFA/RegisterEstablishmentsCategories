@@ -1,0 +1,56 @@
+﻿@model Models.ViewModel.CategoryViewModel
+
+@{
+    ViewBag.Title = "Cadastro de Categoria";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+@using (Ajax.BeginForm("", "", null, null, new { @class = "form-signin", id = "FormCategoryInput", name = "FormCategoryInput" }))
+{
+    <div class="modal fade" id="modal-CategoryInput" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" @*data-keyboard="false" data-backdrop="static"*@>
+        <div class="modal-dialog-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">
+                        <i class="fa fa-calendar"></i>
+                        <span class="hidden-inline-mobile" style="margin-left:10px;"><b>@ViewBag.Title</b></span>
+                    </h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-12">
+                                <div class="col-sm-3 col-lg-4">
+                                    <span><b>Razão Social</b></span>
+                                    <br />
+                                    @Html.HiddenFor(x => x.IdSequence)
+                                    @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", @maxlength = 100 })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        <i class="fa fa-reply"></i>
+                        @Html.Raw(" Fechar")
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="ClearFields()">
+                        <i class="fa fa-reply"></i>
+                        @Html.Raw(" Limpar")
+                    </button>
+                    <button type="button" class="btn btn-success" onclick="SaveCategory();" value="Salvar">
+                        <i class="fa fa-reply"></i>
+                        @Html.Raw(" Salvar")
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

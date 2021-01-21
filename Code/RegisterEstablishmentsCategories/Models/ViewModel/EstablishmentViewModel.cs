@@ -15,7 +15,7 @@ namespace Models.ViewModel
         public string City { get; set; }
         public string State { get; set; }
         public string PhoneNumber { get; set; }
-        public DateTime RegisterDate { get; set; }
+        public string RegisterDate { get; set; }
         public string Category { get; set; }
         public string Status { get; set; }
         public string Agency { get; set; }

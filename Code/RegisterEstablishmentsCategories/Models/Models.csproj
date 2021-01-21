@@ -39,8 +39,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
     <Compile Include="Establishment.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="Status.cs" />
+    <Compile Include="ViewModel\CategoryViewModel.cs" />
     <Compile Include="ViewModel\DatatablesParamViewModel.cs" />
     <Compile Include="ViewModel\EstablishmentViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />

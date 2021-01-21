@@ -8,7 +8,8 @@
         integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
         crossorigin="anonymous"></script>
 <script>
-    var urlOpenEstablishment = '@Url.Action("Index", "Establishments")';   
+    var urlOpenEstablishment = '@Url.Action("Index", "Establishments")';
+    var urlOpenCategory = '@Url.Action("Index", "Categories")';
 </script>
 
 <div class="row" style="text-align:center;margin-top: 25px;">
@@ -20,7 +21,7 @@
     </div>
     <div class="col-md-4">
         <div class="divCategories">
-            <img src="~/Content/img/categorias.png" width="150" height="150" onclick="OpenCategories()"/>
+            <img src="~/Content/img/categorias.png" width="150" height="150" onclick="OpenCategories()" />
         </div>
         <span>Cadastro de Categorias    </span>
     </div>

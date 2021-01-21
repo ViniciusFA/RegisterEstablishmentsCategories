@@ -1,4 +1,5 @@
 ﻿using Business;
+using Models;
 using Models.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -61,11 +62,11 @@ namespace UserInterface.Controllers
 
         public ActionResult Register(int? IdSequence)
         {
+            GetAllDropDownList();
+
             EstablishmentViewModel viewModel = null;
             if (IdSequence != null)
-            {
                 viewModel = _establishmentsBusiness.GetSingleOrDefault(Util.AuxiliaryMethods.ContextPerRequestInstance, IdSequence.Value);
-            }
 
             return PartialView("_Register", viewModel);
         }
@@ -80,16 +81,13 @@ namespace UserInterface.Controllers
                 {
                     Success = result,
                     Title = result ? "Estebelecimento Gravado" : "Falha ao Registrar Estebelecimento",
-                    MsgReturn = result ? Utilities.ApplicationConstants.MESSAGE_RECORD_ADDED: Utilities.ApplicationConstants.ERROR_MESSAGE_ADDED,
+                    MsgReturn = result ? Utilities.ApplicationConstants.MESSAGE_RECORD_ADDED : Utilities.ApplicationConstants.ERROR_MESSAGE_ADDED,
                 }, JsonRequestBehavior.AllowGet);
-
-
             }
             catch (Exception ex)
             {
                 return Json(new { Success = false, Title = "Erro", MsgReturn = ex.Message, JsonRequestBehavior.AllowGet });
             }
-
         }
 
         public JsonResult Delete(int IdEstablishment)
@@ -109,6 +107,22 @@ namespace UserInterface.Controllers
             {
                 return Json(new { Success = false, Title = "Erro", MsgReturn = ex.Message, JsonRequestBehavior.AllowGet });
             }
+        }
+
+        private void GetAllDropDownList()
+        {
+            try
+            {
+                var listCategory = new CategoryBusiness().GetList<Category>(Util.AuxiliaryMethods.ContextPerRequestInstance).ToList();
+                var listStatus = new StatusBusiness().GetList<Status>(Util.AuxiliaryMethods.ContextPerRequestInstance).ToList();
+                          
+                ViewBag.CategoryList = new SelectList(listCategory, "CategoryCode", "CategoryName");
+                ViewBag.StatusList = new SelectList(listStatus, "IdSequence", "Name");
+            }
+            catch (Exception ex)
+            {
+                var teste = ex;
+            }         
         }
     }
 }

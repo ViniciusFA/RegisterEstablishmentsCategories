@@ -23,7 +23,8 @@ namespace Business
                         {
                             IdSequence = e.IdEstablishment.ToString(),
                             Address = e.Address,
-                            AgencyAccount = e.AgencyAccount,
+                            Agency = e.Agency,
+                            Account = e.Agency,
                             Category = e.Category,
                             City = e.City,
                             CNPJ = e.CNPJ,
@@ -99,14 +100,15 @@ namespace Business
             {
                 IdEstablishment = idSequence,
                 Address = viewModel.Address,
-                AgencyAccount = viewModel.AgencyAccount,
+                Agency = viewModel.Agency,
+                Account = viewModel.Account,
                 Category = viewModel.Category,
                 City = viewModel.City,
                 CNPJ = viewModel.CNPJ,
                 CompanyName = viewModel.CompanyName,
                 Email = viewModel.Email,
                 FantasyName = viewModel.FantasyName,
-                PhoneNumber = int.Parse(viewModel.PhoneNumber),
+                PhoneNumber = viewModel.PhoneNumber,
                 RegisterDate = viewModel.RegisterDate,
                 State = viewModel.State,
                 Status = viewModel.Status
@@ -123,7 +125,8 @@ namespace Business
             {
                 IdSequence = idSequence.ToString(),
                 Address = model.Address,
-                AgencyAccount = model.AgencyAccount,
+                Agency = model.Agency,
+                Account = model.Account,
                 Category = model.Category,
                 City = model.City,
                 CNPJ = model.CNPJ,

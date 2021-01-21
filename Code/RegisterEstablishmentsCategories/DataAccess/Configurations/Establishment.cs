@@ -21,11 +21,12 @@ namespace DataAccess.Configurations
             Property(x => x.Address).HasColumnName("ds_address").HasMaxLength(50).IsRequired();
             Property(x => x.City).HasColumnName("ds_city").HasMaxLength(15).IsOptional();
             Property(x => x.State).HasColumnName("ds_state").HasMaxLength(30).IsOptional();
-            Property(x => x.PhoneNumber).HasColumnName("num_phoneNumber").IsRequired();
+            Property(x => x.PhoneNumber).HasColumnName("ds_phoneNumber").HasMaxLength(14).IsRequired();
             Property(x => x.RegisterDate).HasColumnName("dt_registerDate").IsRequired();
             Property(x => x.Category).HasColumnName("ds_category").HasMaxLength(50).IsOptional();
             Property(x => x.Status).HasColumnName("ds_status").HasMaxLength(15).IsOptional();
-            Property(x => x.AgencyAccount).HasColumnName("ds_agencyAccount").HasMaxLength(50).IsRequired();
+            Property(x => x.Agency).HasColumnName("ds_agency").HasMaxLength(5).IsRequired();
+            Property(x => x.Account).HasColumnName("ds_account").HasMaxLength(8).IsRequired();
         }
     }
 }

@@ -39,6 +39,30 @@ function GetColsRegister() {
         }
     });
 
+    // column Agency
+    colDefs.push({
+        "sName": "Agency", "mData": "Agency", "sTitle": "Agência", "sClass": "text-center", "bSortable": false,
+        "mRender": function (data, type, row) {
+            if (row == null || row.Agency == null || row.Agency == '') {
+                return '<i class="glyphicon glyphicon-minus"></i>';
+            } else {
+                return row.Agency;
+            }
+        }
+    });
+
+    // column Account
+    colDefs.push({
+        "sName": "Account", "mData": "Account", "sTitle": "Conta", "sClass": "text-center", "bSortable": false,
+        "mRender": function (data, type, row) {
+            if (row == null || row.Account == null || row.Account == '') {
+                return '<i class="glyphicon glyphicon-minus"></i>';
+            } else {
+                return row.Account;
+            }
+        }
+    });
+
     // column E-mail
     colDefs.push({
         "sName": "Email", "mData": "Email", "sTitle": "E-mail", "sClass": "text-center", "bSortable": false,
@@ -65,7 +89,7 @@ function GetColsRegister() {
 
     // column City
     colDefs.push({
-        "sName": "City", "mData": "City", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
+        "sName": "City", "mData": "City", "sTitle": "Cidade", "sClass": "text-center", "bSortable": false,
         "mRender": function (data, type, row) {
             if (row == null || row.City == null || row.City == '') {
                 return '<i class="glyphicon glyphicon-minus"></i>';
@@ -77,7 +101,7 @@ function GetColsRegister() {
 
     // column State
     colDefs.push({
-        "sName": "State", "mData": "State", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
+        "sName": "State", "mData": "State", "sTitle": "Estado", "sClass": "text-center", "bSortable": false,
         "mRender": function (data, type, row) {
             if (row == null || row.State == null || row.State == '') {
                 return '<i class="glyphicon glyphicon-minus"></i>';
@@ -89,7 +113,7 @@ function GetColsRegister() {
 
     // column PhoneNUmber
     colDefs.push({
-        "sName": "PhoneNumber", "mData": "PhoneNumber", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
+        "sName": "PhoneNumber", "mData": "PhoneNumber", "sTitle": "Telefone", "sClass": "text-center", "bSortable": false,
         "mRender": function (data, type, row) {
             if (row == null || row.PhoneNumber == null || row.PhoneNumber == '') {
                 return '<i class="glyphicon glyphicon-minus"></i>';
@@ -101,7 +125,7 @@ function GetColsRegister() {
 
     // column RegisterDate
     colDefs.push({
-        "sName": "RegisterDate", "mData": "RegisterDate", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
+        "sName": "RegisterDate", "mData": "RegisterDate", "sTitle": "Data de Cadastro", "sClass": "text-center", "bSortable": false,
         "mRender": function (data, type, row) {
             if (row == null || row.RegisterDate == null || row.RegisterDate == '') {
                 return '<i class="glyphicon glyphicon-minus"></i>';
@@ -113,7 +137,7 @@ function GetColsRegister() {
 
     // column Category
     colDefs.push({
-        "sName": "Category", "mData": "Category", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
+        "sName": "Category", "mData": "Category", "sTitle": "Categoria", "sClass": "text-center", "bSortable": false,
         "mRender": function (data, type, row) {
             if (row == null || row.Category == null || row.Category == '') {
                 return '<i class="glyphicon glyphicon-minus"></i>';
@@ -125,7 +149,7 @@ function GetColsRegister() {
 
     // column Status 
     colDefs.push({
-        "sName": "Status", "mData": "Status", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
+        "sName": "Status", "mData": "Status", "sTitle": "Status", "sClass": "text-center", "bSortable": false,
         "mRender": function (data, type, row) {
             if (row == null || row.Status == null || row.Status == '') {
                 return '<i class="glyphicon glyphicon-minus"></i>';
@@ -134,19 +158,7 @@ function GetColsRegister() {
             }
         }
     });
-
-    // column AgencyAccount
-    colDefs.push({
-        "sName": "AgencyAccount", "mData": "AgencyAccount", "sTitle": "Endereço", "sClass": "text-center", "bSortable": false,
-        "mRender": function (data, type, row) {
-            if (row == null || row.AgencyAccount == null || row.AgencyAccount == '') {
-                return '<i class="glyphicon glyphicon-minus"></i>';
-            } else {
-                return row.AgencyAccount;
-            }
-        }
-    });
-
+    
     // column Action
     colDefs.push({
         "mData": "Action", "sTitle": "Ações", "sClass": "text-center", "bSearchable": false, "bSortable": false,
@@ -299,16 +311,10 @@ function ClearFields() {
     $("#RegisterDate").val('');
     $("#Category").val('');
     $("#Status").val('');
-    $("#AgencyAccount").val('');    
+    $("#Agency").val('');
+    $("#Account").val('');   
 }
 
 function GoBackMenu() {
     window.location.href = urlIndexMenu;
 }
-
-function MasksInitialize() {
-
-    //$('.defaultTelefoneMask').mask('000.00000.0000');
-
-}
-

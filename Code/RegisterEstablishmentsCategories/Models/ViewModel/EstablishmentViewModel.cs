@@ -18,6 +18,7 @@ namespace Models.ViewModel
         public DateTime RegisterDate { get; set; }
         public string Category { get; set; }
         public string Status { get; set; }
-        public string AgencyAccount { get; set; }
+        public string Agency { get; set; }
+        public string Account { get; set; }
     }
 }

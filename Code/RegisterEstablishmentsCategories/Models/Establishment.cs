@@ -12,13 +12,11 @@ namespace Models
         public string Address { get; set; } // ds_address
         public string City { get; set; } //ds_city
         public string State { get; set; } //ds_state
-        public int PhoneNumber { get; set; } //num_phoneNumber
+        public string PhoneNumber { get; set; } //num_phoneNumber
         public DateTime RegisterDate { get; set; } //dt_registerDate
         public string Category { get; set; } //ds_category
         public string Status { get; set; } //ds_status
-        public string AgencyAccount
-        {
-            get; set;  //ds_agencyAccount
-        }
+        public string Agency{ get; set; } //ds_agency
+        public string Account { get; set; } //ds_account
     }
 }

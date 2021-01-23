@@ -64,7 +64,13 @@ namespace UserInterface.Controllers
         {
             GetAllDropDownList();
 
-            EstablishmentViewModel viewModel = null;
+
+
+            EstablishmentViewModel viewModel = new EstablishmentViewModel
+            {
+                MessageError = "*** Preencha os campos obrigatórios."
+            };
+
             if (IdSequence != null)
                 viewModel = _establishmentsBusiness.GetSingleOrDefault(Util.AuxiliaryMethods.ContextPerRequestInstance, IdSequence.Value);
 
@@ -75,6 +81,17 @@ namespace UserInterface.Controllers
         {
             try
             {
+                var CategoryName = GetCategoryName(viewModel.Category);
+                if(CategoryName == "Supermercado" && string.IsNullOrEmpty(viewModel.PhoneNumber))
+                {
+                    return Json(new
+                    {
+                        Success = false,
+                        Title = "Campo Obrigatório" ,
+                        MsgReturn = "Telefone é um campo obrigatório para o estabelecimento Supermercado",
+                    }, JsonRequestBehavior.AllowGet);
+                }
+
                 var result = _establishmentsBusiness.SaveUpdateEstablishment(Util.AuxiliaryMethods.ContextPerRequestInstance, viewModel);
 
                 return Json(new
@@ -123,6 +140,18 @@ namespace UserInterface.Controllers
             {
                 var teste = ex;
             }         
+        }
+
+        private string GetCategoryName(string StringCategory)
+        {
+            string CategoryName = string.Empty;
+            if (!string.IsNullOrEmpty(StringCategory))
+            {
+                int IdCategory = int.Parse(StringCategory);
+                CategoryName = new CategoryBusiness().GetSingleOrDefault<Category>(Util.AuxiliaryMethods.ContextPerRequestInstance, x => x.CategoryCode == IdCategory).CategoryName;
+            }
+
+            return CategoryName;
         }
     }
 }

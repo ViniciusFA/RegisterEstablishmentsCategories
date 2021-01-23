@@ -20,6 +20,13 @@ fieldset {
     padding: 1px;
 }
 
+#divMessageFieldsRequired {
+    color: red;
+    font: bold;
+    font-weight: bold;
+    display: none;
+}
+
 legend {
     display: block;
     width: inherit;

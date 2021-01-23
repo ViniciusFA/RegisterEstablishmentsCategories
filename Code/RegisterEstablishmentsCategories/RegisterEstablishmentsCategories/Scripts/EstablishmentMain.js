@@ -15,11 +15,7 @@
 };
 
 function MasksInitialize() {
-
-    $('.defaultMoneyMask').mask('000t000t000d00'.replace(/t/g, globalCultureGroupSeparator).replace('d', globalCultureDecimalSeparator), { reverse: true });
     
-    $('.defaultCPFMask').mask(SPMaskBehavior, spOptions);
-
     $('.defaultRootCNPJMask').mask('00.000.000');
 
     $('.defaultTelefoneMask').mask('000.00000.0000');
@@ -34,7 +30,6 @@ function MasksInitialize() {
 
     $('.defaultPercentMask').mask('999');
    
-    });
 }
 
 function StartMultiselect() {

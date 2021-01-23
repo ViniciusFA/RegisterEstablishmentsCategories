@@ -433,6 +433,8 @@
     <Content Include="Scripts\jquery.ui\jquery-ui.min.js" />
     <Content Include="Scripts\jquery.ui\lang\datepicker-en-US.js" />
     <Content Include="Scripts\jquery.ui\lang\datepicker-pt-BR.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

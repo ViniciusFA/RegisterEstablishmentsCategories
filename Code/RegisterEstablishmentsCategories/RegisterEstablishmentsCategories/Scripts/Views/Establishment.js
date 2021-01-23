@@ -116,22 +116,64 @@ function Register(code) {
 }
 
 function Save() {
-    var form = $("#FormRegisterInput").serialize();
 
-    $.ajax({
-        url: urlSaveRegister,
-        data: form,
-        type: 'POST',
-        success: function (result) {            
-            if (result.Success == true) {
-                $('#modal-RegisterInput').modal('hide');
-                RefreshDatatable();
-                ShowMessageSuccess(result.Title, result.MsgReturn)
-            } else {
-                ShowMessageError(result.Title, result.MsgReturn);
-            }
+    
+   
+    if ($('#FormRegisterInput').valid()) {       
+        var CategoryName = $('#CategoryDDL').val();
+        var phoneNumber = $('#PhoneNumber').val();
+
+        //CategoryName 4 == supermercado
+        if (CategoryName == '4' && (phoneNumber == undefined || phoneNumber == "")) {
+            Validations($('#CompanyName').val(), $('#CNPJ').val(), $('#Email').val(), CategoryName, phoneNumber);
+            document.getElementById("divMessageFieldsRequired").style.display = "block";
+
+        } else {           
+            document.getElementById("divMessageFieldsRequired").style.display = "none";
+
+            var form = $("#FormRegisterInput").serialize();
+
+            $.ajax({
+                url: urlSaveRegister,
+                data: form,
+                type: 'POST',
+                success: function (result) {
+                    if (result.Success == true) {
+                        $('#modal-RegisterInput').modal('hide');
+                        RefreshDatatable();
+                        ShowMessageSuccess(result.Title, result.MsgReturn)
+                    } else {
+                        ShowMessageError(result.Title, result.MsgReturn);
+                    }
+                }
+            });
         }
-    });
+
+    } else {
+        Validations($('#CompanyName').val(), $('#CNPJ').val(), $('#Email').val(), $('#CategoryDDL').val(), $('#PhoneNumber').val());
+
+        document.getElementById("divMessageFieldsRequired").style.display = "block";
+    }    
+}
+
+function Validations(companyName, CNPJ, Email, CategoryName, phoneNumber) {
+
+    if (companyName == undefined || companyName == "") {
+        return document.getElementById("divMessageFieldsRequired").innerHTML = "*** Razão Social é orbigatório.";
+    }
+
+    if (CNPJ == undefined || CNPJ == "") {
+        return document.getElementById("divMessageFieldsRequired").innerHTML = "*** CNPJ é orbigatório.";
+    }
+
+    if (Email != undefined && Email != "") {
+        return document.getElementById("divMessageFieldsRequired").innerHTML = "*** Email no formato incorreto.";
+    }
+
+    if (CategoryName == '4' && (phoneNumber == undefined || phoneNumber == "")) {
+        return document.getElementById("divMessageFieldsRequired").innerHTML = "*** Telefone obrigatório para o estabelecimento Supermercado.";
+    }
+
 }
 
 function Delete(EstablishmentName, EstablishmentCode) {

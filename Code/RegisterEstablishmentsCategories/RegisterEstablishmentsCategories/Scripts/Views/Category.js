@@ -102,22 +102,28 @@ function RegisterCategory(code) {
 }
 
 function SaveCategory() {
-    var form = $("#FormCategoryInput").serialize();
 
-    $.ajax({
-        url: urlSaveCategory,
-        data: form,
-        type: 'POST',
-        success: function (result) {
-            if (result.Success == true) {
-                $('#modal-CategoryInput').modal('hide');
-                RefreshDatatable();
-                ShowMessageSuccess(result.Title, result.MsgReturn)
-            } else {
-                ShowMessageError(result.Title, result.MsgReturn);
+    var form = $("#FormCategoryInput").serialize();
+    var categoryName = $('#CategoryName').val();
+
+    if (categoryName == undefined || categoryName == "") {
+        document.getElementById("divMessageErrorCategory").style.display = "block";
+    }else{
+        $.ajax({
+            url: urlSaveCategory,
+            data: form,
+            type: 'POST',
+            success: function (result) {
+                if (result.Success == true) {
+                    $('#modal-CategoryInput').modal('hide');
+                    RefreshDatatable();
+                    ShowMessageSuccess(result.Title, result.MsgReturn)
+                } else {
+                    ShowMessageError(result.Title, result.MsgReturn);
+                }
             }
-        }
-    });
+        });
+    }     
 }
 
 function RefreshDatatable() {

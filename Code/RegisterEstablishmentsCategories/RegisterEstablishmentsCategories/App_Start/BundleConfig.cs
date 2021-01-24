@@ -41,6 +41,7 @@ namespace RegisterEstablishmentsCategories
                       "~/Content/DataTables/css/dataTables.bootstrap.css",
                       "~/Content/Login/Login.css",
                       "~/Content/Menu/Menu.css",
+                      "~/Content/Category/Category.css",
                       "~/Content/Site/Site.css"));
         }
     }

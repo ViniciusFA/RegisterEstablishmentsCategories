@@ -62,19 +62,26 @@ namespace UserInterface.Controllers
 
         public ActionResult Register(int? IdSequence)
         {
-            GetAllDropDownList();
-
-
-
-            EstablishmentViewModel viewModel = new EstablishmentViewModel
+            try
             {
-                MessageError = "*** Preencha os campos obrigatórios."
-            };
+                GetAllDropDownList();
 
-            if (IdSequence != null)
-                viewModel = _establishmentsBusiness.GetSingleOrDefault(Util.AuxiliaryMethods.ContextPerRequestInstance, IdSequence.Value);
+                EstablishmentViewModel viewModel = new EstablishmentViewModel
+                {
+                    MessageError = "*** Preencha os campos obrigatórios."
+                };
 
-            return PartialView("_Register", viewModel);
+                if (IdSequence != null)
+                    viewModel = _establishmentsBusiness.GetSingleOrDefault(Util.AuxiliaryMethods.ContextPerRequestInstance, IdSequence.Value);
+
+                return PartialView("_Register", viewModel);
+            }
+            catch(Exception ex){
+                var teste = ex;
+            }
+
+
+            return PartialView("_Register");
         }
 
         public JsonResult Save(EstablishmentViewModel viewModel)

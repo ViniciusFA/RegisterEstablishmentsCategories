@@ -25,7 +25,7 @@
                         <div class="row">
                             <div class="col-sm-12 col-lg-12">
                                 <div class="col-sm-3 col-lg-4">
-                                    <span><b>Razão Social</b></span>
+                                    <span><b>Nome da Categoria</b></span>
                                     <br />
                                     @Html.HiddenFor(x => x.IdSequence)
                                     @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", @maxlength = 100 })
@@ -48,6 +48,10 @@
                         <i class="fa fa-reply"></i>
                         @Html.Raw(" Salvar")
                     </button>
+                </div>
+
+                <div class="pull-left" id="divMessageErrorCategory">
+                   @Html.Raw("*** Nome da Categoria obrigatório.")
                 </div>
             </div>
         </div>

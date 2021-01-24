@@ -110,45 +110,25 @@ namespace Business
             int? idSequence = null;
             if(!isInsert)
                 idSequence = model.IdEstablishment != null? model.IdEstablishment : null;
-
-
-            model = new Establishment();
-
-
-            model.IdEstablishment = idSequence;
-            model.Address = viewModel.Address;
-            model.Agency = viewModel.Agency;
-            model.Account = viewModel.Account;
-            model.CategoryID = int.Parse(viewModel.Category);
-            model.City = viewModel.City;
-            model.CNPJ = viewModel.CNPJ;
-            model.CompanyName = viewModel.CompanyName;
-            model.Email = viewModel.Email;
-            model.FantasyName = viewModel.FantasyName;
-            model.PhoneNumber = viewModel.PhoneNumber;
-            model.RegisterDate = !string.IsNullOrEmpty(viewModel.RegisterDate)? DateTime.Parse(viewModel.RegisterDate) : DateTime.Now;
-            model.State = viewModel.State;
-            model.StatusID = int.Parse(viewModel.Status);
-            model.CreateDate = DateTime.Now;
-
-            //model = new Establishment
-            //{
-            //    IdEstablishment = idSequence,
-            //    Address = viewModel.Address,
-            //    Agency = viewModel.Agency,
-            //    Account = viewModel.Account,
-            //    CategoryID = int.Parse(viewModel.Category),
-            //    City = viewModel.City,
-            //    CNPJ = viewModel.CNPJ,
-            //    CompanyName = viewModel.CompanyName,
-            //    Email = viewModel.Email,
-            //    FantasyName = viewModel.FantasyName,
-            //    PhoneNumber = viewModel.PhoneNumber,
-            //    RegisterDate = DateTime.Parse(viewModel.RegisterDate),
-            //    State = viewModel.State,
-            //    StatusID = int.Parse(viewModel.Status),
-            //    CreateDate = DateTime.Now
-            //};
+            
+            model = new Establishment
+            {
+                IdEstablishment = idSequence,
+                Address = viewModel.Address,
+                Agency = viewModel.Agency,
+                Account = viewModel.Account,
+                CategoryID = int.Parse(viewModel.Category),
+                City = viewModel.City,
+                CNPJ = viewModel.CNPJ,
+                CompanyName = viewModel.CompanyName,
+                Email = viewModel.Email,
+                FantasyName = viewModel.FantasyName,
+                PhoneNumber = viewModel.PhoneNumber,
+                RegisterDate = DateTime.Parse(viewModel.RegisterDate),
+                State = viewModel.State,
+                StatusID = int.Parse(viewModel.Status),
+                CreateDate = DateTime.Now
+            };
 
             return model;
         }
@@ -158,27 +138,26 @@ namespace Business
             var idSequence = model.IdEstablishment != null ? model.IdEstablishment : null;
             var category = this.GetSingleOrDefault<Category>(context, x => x.CategoryCode == model.CategoryID);
             var status = this.GetSingleOrDefault<Status>(context, x => x.IdSequence == model.StatusID);
-
+                        
             viewModel = new EstablishmentViewModel
             {
                 IdSequence = idSequence.ToString(),
                 Address = model.Address,
                 Agency = model.Agency,
                 Account = model.Account,
-                Category = category != null? category.CategoryCode.ToString() : "",
+                Category = category != null ? category.CategoryCode.ToString() : "",
                 City = model.City,
                 CNPJ = model.CNPJ,
                 CompanyName = model.CompanyName,
                 Email = model.Email,
                 FantasyName = model.FantasyName,
-                PhoneNumber = model.PhoneNumber.ToString(),
-                RegisterDate = model.RegisterDate.HasValue? model.RegisterDate.Value.ToString("dd/MM/yyyy") : null,
+                PhoneNumber = model.PhoneNumber,
+                RegisterDate = model.RegisterDate.HasValue ? model.RegisterDate.Value.ToString("dd/MM/yyyy") : null,
                 State = model.State,
-                Status = status != null? status.IdSequence.ToString() : "",
+                Status = status != null ? status.IdSequence.ToString() : "",
             };
 
             return viewModel;
         }
-
     }
 }

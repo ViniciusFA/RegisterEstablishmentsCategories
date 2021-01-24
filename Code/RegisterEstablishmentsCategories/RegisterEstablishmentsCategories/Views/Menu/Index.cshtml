@@ -10,6 +10,7 @@
 <script>
     var urlOpenEstablishment = '@Url.Action("Index", "Establishments")';
     var urlOpenCategory = '@Url.Action("Index", "Categories")';
+     var urlIndexLogin = '@Url.Action("Index", "Login")';
 </script>
 
 <div class="row" style="text-align:center;margin-top: 25px;">
@@ -19,10 +20,17 @@
         </div>
         <span>Cadastro de Estabelecimentos </span>
     </div>
+
     <div class="col-md-4">
         <div class="divCategories">
             <img src="~/Content/img/categorias.png" width="150" height="150" onclick="OpenCategories()" />
         </div>
         <span>Cadastro de Categorias    </span>
     </div>
+</div>
+
+<div class="pull-right" margin-right: 25px;">
+    <a type="button" class="btn_goBackPage" onclick="GoOut();" value="Sair">
+        @Html.Raw("Sair")
+    </a>
 </div>

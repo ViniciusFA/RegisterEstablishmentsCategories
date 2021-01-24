@@ -42,7 +42,7 @@ body {
 }
 
 a {
-    color: #20ab38;
+    color: #3039bd;
     display: inline-block;
     text-decoration: none;
     font-weight: 400;
@@ -58,10 +58,12 @@ h2 {
     color: #cccccc;
 }
 
-
+.messageValidationError {
+    margin-left: 33px;
+    display: none;
+}
 
 /* STRUCTURE */
-
 .wrapper {
     display: flex;
     align-items: center;
@@ -113,7 +115,7 @@ h2.active {
 /* FORM TYPOGRAPHY*/
 
 input[type=button], input[type=submit], input[type=reset] {
-    background-color: #20ab38;
+    background-color: #6367d2;
     border: none;
     color: white;
     padding: 15px 80px;
@@ -123,7 +125,7 @@ input[type=button], input[type=submit], input[type=reset] {
     text-transform: uppercase;
     font-size: 13px;
     -webkit-box-shadow: 0 10px 30px 0 rgba(29,214,15,0.4);
-    box-shadow: 0 10px 30px 0 rgba(29,214,15,0.4);
+    box-shadow: 0 10px 30px 0 rgba(24,51,185,0.4);
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
     margin: 5px 20px 40px 20px;
@@ -135,7 +137,7 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
     input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-        background-color: #13860c;
+        background-color: #8e9fd8;
     }
 
     input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
@@ -293,13 +295,13 @@ input[type=text], input[type=password] {
     bottom: -10px;
     width: 0;
     height: 2px;
-    background-color: #13860c;
+    background-color: #8e9fd8;
     content: "";
     transition: width 0.2s;
 }
 
 .underlineHover:hover {
-    color: #13860c;
+    color: #8e9fd8;
 }
 
     .underlineHover:hover:after {

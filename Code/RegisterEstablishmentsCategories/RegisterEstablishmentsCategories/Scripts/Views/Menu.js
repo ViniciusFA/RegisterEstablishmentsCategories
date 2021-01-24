@@ -6,3 +6,7 @@ function OpenEstablishments() {
 function OpenCategories() {
     window.location.href = urlOpenCategory;
 }
+
+function GoOut() {
+    window.location.href = urlIndexLogin;
+}

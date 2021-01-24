@@ -18,19 +18,22 @@
 
             <div class="fadeIn first">
                 <div style="float:left;width:100%;height:20px;"></div>
-                <img src="~/img/logo.png" id="icon" alt="Logo Icon" />
             </div>
 
+            <br />
 
-                @Html.TextBoxFor(x => x.name, new { @Class = "fadeIn second", placeholder = "Nome" })
-                <span asp-validation-for="Email" style="color: #dc3545 !important;"></span>
+            @Html.TextBoxFor(x => x.name, new { @Class = "fadeIn second", placeholder = "Nome" })
+            <span asp-validation-for="Email" style="color: #dc3545 !important;"></span>
 
-                @Html.PasswordFor(x => x.password, new { @Class = "fadeIn second", placeholder = "Senha" })
-                <span asp-validation-for="Senha" style="color: #dc3545 !important;"></span>
-                <br />
-                <input type="submit" class="fadeIn fourth" onclick="EnterLogin()" value="Entrar">
-                <br />
-                <span style="color: #dc3545 !important;"> @ViewData["ErrorLogin"]</span>
+            @Html.PasswordFor(x => x.password, new { @Class = "fadeIn second", placeholder = "Senha" })
+            <span asp-validation-for="Senha" style="color: #dc3545 !important;"></span>
+            <br />
+            <br />
+            <input type="submit" class="fadeIn fourth" onclick="EnterLogin()" value="Entrar">
+            <br />
+
+            <div style="color: #dc3545 !important;" id="messageValidationError">   
+            </div>
 
             <div id="formFooter">
                 <a class="underlineHover" href="#">Esqueceu a senha?</a>

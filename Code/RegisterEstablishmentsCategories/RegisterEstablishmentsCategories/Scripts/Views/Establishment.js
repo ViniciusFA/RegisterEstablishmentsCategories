@@ -297,7 +297,8 @@ function Validations(companyName, CNPJ, CategoryName, phoneNumber, dataRegister,
             return false;
         }
     }
-    
+
+    //"0" = Selecione
     if (CategoryName == undefined || CategoryName == "" || CategoryName == "0") {
         document.getElementById("divMessageFieldsRequired").innerHTML = "*** Selecione uma categoria.";
         return false;
@@ -318,7 +319,6 @@ function Validations(companyName, CNPJ, CategoryName, phoneNumber, dataRegister,
         document.getElementById("divMessageFieldsRequired").innerHTML = "*** Selecione um status.";
         return false;
     }
-
 }
 
 function Delete(EstablishmentName, EstablishmentCode) {

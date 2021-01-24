@@ -42,7 +42,7 @@ namespace Business
                             Email = e.Email,
                             FantasyName = e.FantasyName,
                             PhoneNumber = e.PhoneNumber,
-                            RegisterDate = e.RegisterDate.ToString("dd/MM/yyyy"),
+                            RegisterDate = e.RegisterDate.Value.ToString("dd/MM/yyyy"),
                             State = e.State,
                             Status = e.Status.Name //status != null? status.Name : ""
                         });
@@ -111,24 +111,44 @@ namespace Business
             if(!isInsert)
                 idSequence = model.IdEstablishment != null? model.IdEstablishment : null;
 
-            model = new Establishment
-            {
-                IdEstablishment = idSequence,
-                Address = viewModel.Address,
-                Agency = viewModel.Agency,
-                Account = viewModel.Account,
-                CategoryID = int.Parse(viewModel.Category),
-                City = viewModel.City,
-                CNPJ = viewModel.CNPJ,
-                CompanyName = viewModel.CompanyName,
-                Email = viewModel.Email,
-                FantasyName = viewModel.FantasyName,
-                PhoneNumber = viewModel.PhoneNumber,
-                RegisterDate = DateTime.Parse(viewModel.RegisterDate),
-                State = viewModel.State,
-                StatusID = int.Parse(viewModel.Status),
-                CreateDate = DateTime.Now
-            };
+
+            model = new Establishment();
+
+
+            model.IdEstablishment = idSequence;
+            model.Address = viewModel.Address;
+            model.Agency = viewModel.Agency;
+            model.Account = viewModel.Account;
+            model.CategoryID = int.Parse(viewModel.Category);
+            model.City = viewModel.City;
+            model.CNPJ = viewModel.CNPJ;
+            model.CompanyName = viewModel.CompanyName;
+            model.Email = viewModel.Email;
+            model.FantasyName = viewModel.FantasyName;
+            model.PhoneNumber = viewModel.PhoneNumber;
+            model.RegisterDate = !string.IsNullOrEmpty(viewModel.RegisterDate)? DateTime.Parse(viewModel.RegisterDate) : DateTime.Now;
+            model.State = viewModel.State;
+            model.StatusID = int.Parse(viewModel.Status);
+            model.CreateDate = DateTime.Now;
+
+            //model = new Establishment
+            //{
+            //    IdEstablishment = idSequence,
+            //    Address = viewModel.Address,
+            //    Agency = viewModel.Agency,
+            //    Account = viewModel.Account,
+            //    CategoryID = int.Parse(viewModel.Category),
+            //    City = viewModel.City,
+            //    CNPJ = viewModel.CNPJ,
+            //    CompanyName = viewModel.CompanyName,
+            //    Email = viewModel.Email,
+            //    FantasyName = viewModel.FantasyName,
+            //    PhoneNumber = viewModel.PhoneNumber,
+            //    RegisterDate = DateTime.Parse(viewModel.RegisterDate),
+            //    State = viewModel.State,
+            //    StatusID = int.Parse(viewModel.Status),
+            //    CreateDate = DateTime.Now
+            //};
 
             return model;
         }
@@ -152,7 +172,7 @@ namespace Business
                 Email = model.Email,
                 FantasyName = model.FantasyName,
                 PhoneNumber = model.PhoneNumber.ToString(),
-                RegisterDate = model.RegisterDate.ToString("dd/MM/yyyy"),
+                RegisterDate = model.RegisterDate.HasValue? model.RegisterDate.Value.ToString("dd/MM/yyyy") : null,
                 State = model.State,
                 Status = status != null? status.IdSequence.ToString() : "",
             };

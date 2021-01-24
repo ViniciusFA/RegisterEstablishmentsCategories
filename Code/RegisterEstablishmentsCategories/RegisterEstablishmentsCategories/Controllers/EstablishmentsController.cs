@@ -81,17 +81,6 @@ namespace UserInterface.Controllers
         {
             try
             {
-                var CategoryName = GetCategoryName(viewModel.Category);
-                if(CategoryName == "Supermercado" && string.IsNullOrEmpty(viewModel.PhoneNumber))
-                {
-                    return Json(new
-                    {
-                        Success = false,
-                        Title = "Campo Obrigatório" ,
-                        MsgReturn = "Telefone é um campo obrigatório para o estabelecimento Supermercado",
-                    }, JsonRequestBehavior.AllowGet);
-                }
-
                 var result = _establishmentsBusiness.SaveUpdateEstablishment(Util.AuxiliaryMethods.ContextPerRequestInstance, viewModel);
 
                 return Json(new
@@ -131,27 +120,18 @@ namespace UserInterface.Controllers
             try
             {
                 var listCategory = new CategoryBusiness().GetList<Category>(Util.AuxiliaryMethods.ContextPerRequestInstance).ToList();
+                listCategory.Insert(0, new Category { CategoryCode = 0, CategoryName = "Selecione", CreateDate = DateTime.Now });
+
                 var listStatus = new StatusBusiness().GetList<Status>(Util.AuxiliaryMethods.ContextPerRequestInstance).ToList();
-                          
+                listStatus.Insert(0, new Status { Name = "Selecione", CreateDate = DateTime.Now });
+
                 ViewBag.CategoryList = new SelectList(listCategory, "CategoryCode", "CategoryName");
                 ViewBag.StatusList = new SelectList(listStatus, "IdSequence", "Name");
             }
             catch (Exception ex)
             {
                 var teste = ex;
-            }         
-        }
-
-        private string GetCategoryName(string StringCategory)
-        {
-            string CategoryName = string.Empty;
-            if (!string.IsNullOrEmpty(StringCategory))
-            {
-                int IdCategory = int.Parse(StringCategory);
-                CategoryName = new CategoryBusiness().GetSingleOrDefault<Category>(Util.AuxiliaryMethods.ContextPerRequestInstance, x => x.CategoryCode == IdCategory).CategoryName;
             }
-
-            return CategoryName;
         }
     }
 }

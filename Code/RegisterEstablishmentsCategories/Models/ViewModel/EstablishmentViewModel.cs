@@ -7,12 +7,10 @@ namespace Models.ViewModel
     public class EstablishmentViewModel : DatatablesParamViewModel
     {
         public string IdSequence { get; set; }
-        [Required(ErrorMessage ="Campo Obrigatório", AllowEmptyStrings = false)]
         public string CompanyName { get; set; }
         public string FantasyName { get; set; }
-        [Required(ErrorMessage = "Campo Obrigatório", AllowEmptyStrings = false)]
         public string CNPJ { get; set; }
-        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido...")]
+        [RegularExpression(".+\\@.+\\..+")]
         public string Email { get; set; }
         public string Address { get; set; }
         public string City { get; set; }

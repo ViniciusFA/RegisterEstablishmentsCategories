@@ -13,12 +13,12 @@ namespace Models
         public string City { get; set; } //ds_city
         public string State { get; set; } //ds_state
         public string PhoneNumber { get; set; } //num_phoneNumber
-        public DateTime RegisterDate { get; set; } //dt_registerDate
-        public int CategoryID { get; set; } //ds_category
-        public int StatusID { get; set; } //ds_status
+        public DateTime? RegisterDate { get; set; } //dt_registerDate
+        public int? CategoryID { get; set; } //ds_category
+        public int? StatusID { get; set; } //ds_status
         public string Agency{ get; set; } //ds_agency
         public string Account { get; set; } //ds_account
-        public DateTime CreateDate { get; set; } // dt_createDate
+        public DateTime? CreateDate { get; set; } // dt_createDate
 
         public Category Category { get; set; }
         public Status Status { get; set; }
